@@ -1,0 +1,26 @@
+
+<h1>Current Requests</h1>
+<%#Sorts the requests by price%>
+<%temp = Array.new%>
+<%Request.all.each do |request| %>
+  <%if request.cost.present? %>
+    <%temp.unshift [request.cost, request.name, request.id]%>
+  <%end%>
+<%end%>
+<% temp = temp.sort { |a,b| a[0] <=> b[0]}%>
+
+<%#Prints the table of the names, cost, and link to people's pages %>
+<table class = "table table-striped">
+  <thead class = "thead-dark">
+      <th>Name</th>
+      <th>Cost</th>
+      <th>Link to Page</th>
+  </thead>
+  <%temp.each do |person| %>
+    <tbody>
+      <td><%=person[1]%></td>
+      <td>$<%=person[0]%></td>
+      <td><%=link_to "Cart", request_path(person[2]) %></td>
+    </tbody>
+  <% end %>
+</table>
