@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: %i[ show edit update destroy ]
+  before_action :set_request, only: %i[ show edit update destroy add_product ]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy, :add_product]
 
 
   # GET /requests or /requests.json
@@ -62,13 +62,22 @@ class RequestsController < ApplicationController
     end
   end
 
+  def add_product
+    @request.product_list.push(params[:prod_id])
+    
+    if @request.save
+      redirect_to requests_path + '/' + params[:id].to_s
+    else
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @request.errors, status: :unprocessable_entity }
+    end
+  end  
 
   def correct_user
     @request = current_user.requests.find_by(id: params[:id])
     redirect_to request_path, notice: "Not Authorized to edit this request" if @request.nil?
   end
-
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request
