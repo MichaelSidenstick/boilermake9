@@ -1,3 +1,4 @@
+<% @TMP_PROD_ID = 5%>
 <div>
   <p><%=@request.name%></p>
   <p> 
@@ -7,4 +8,5 @@
   </p>
 </div>
 <%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+<%= link_to 'Back', requests_path %> |
+<%= link_to 'Add Product', 'http://localhost:3000/requests/' + @request.id.to_s + '/add_product?prod_id=' + @TMP_PROD_ID.to_s  %>
