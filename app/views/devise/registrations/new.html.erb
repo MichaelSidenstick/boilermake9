@@ -21,6 +21,11 @@
     <%= f.password_field :password_confirmation, class:"form-control", placeholder:"Password Confirmation", autocomplete: "new-password" %>
   </div>
 
+  <div class="field form-group">
+    <%= f.label :userType %> (enter Recipient or Donor)<br />
+    <%= f.text_field :userType, autofocus: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up", class: 'btn btn-secondary' %>
   </div>
