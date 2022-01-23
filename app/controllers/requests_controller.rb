@@ -110,7 +110,7 @@ class RequestsController < ApplicationController
 
   def product_search_redirect
     puts params[:term].to_s
-    redirect_to 'http://localhost:3000/requests/new/' + params[:id].to_s + '/add_products?term=' + params[:term].to_s
+    redirect_to 'http://localhost:3000/requests/new/' + params[:id].to_s + '/add_products?term=' + params[:term].to_s 
   end
   
   def add_to_cart
