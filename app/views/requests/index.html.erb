@@ -14,7 +14,7 @@
     <% @requests.each do |request| %>
       <% if request.user == current_user%>
       <tr>
-        <td><%= request.name %></td>
+        <td><%= link_to request.name, 'http://localhost:3000/requests/' + request.id.to_s %></td>
         <td><%= link_to 'Edit', edit_request_path(request) %></td>
         <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
