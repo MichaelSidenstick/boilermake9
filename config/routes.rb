@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/fulfilled_request', to: 'home#fulfilled_request'
 
   get "/requests/:id/add_product", to: "requests#add_product"
+  get "/requests/new/:id/add_products", to: "requests#product_search"
+  post "/requests/new/:id/add_products", to: "requests#product_search_redirect"
   get "/requests/:id/add_to_cart", to: "requests#add_to_cart"
 
   get "authenticate", to: "authenticate#main"
