@@ -17,6 +17,14 @@
   </div>
 
   <div class="actions">
+    <%= form.number_field :user_id,
+      id: :request_user_id,
+      class:"form-control", value: 
+        current_user.id, type: :hidden   %>
+  </div>
+  
+
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
