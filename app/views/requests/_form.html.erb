@@ -16,6 +16,11 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="action">
+    <%= form.label 'Item' %>
+    <%= form.text_field :product_list %>
+  </div>
+
   <div class="actions">
     <%= form.number_field :user_id,
       id: :request_user_id,
