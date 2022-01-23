@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/current_request', to: 'home#current_request'
 
   get "/requests/:id/add_product", to: "requests#add_product"
+  get "/requests/:id/add_to_cart", to: "requests#add_to_cart"
 
   get "authenticate", to: "authenticate#main"
   get "authenticate/reset"

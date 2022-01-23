@@ -26,6 +26,23 @@
         <a class="nav-link" href="#">Fulfilled Requests</a>
       </li>
 
+    <% if current_user %>
+        <% if current_user.userType && current_user.userType.downcase == "donor" %>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Current Requests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Fulfilled Requests</a>
+            </li>
+        <% else %>
+            <li class="nav-item">
+                <%= link_to "Create Request", new_request_path, class:"nav-link"%>
+            </li>
+            <li class="nav-item">
+                <%= link_to "View Your Requests", requests_path, class:"nav-link"%>
+            </li>
+        <% end %>
+    <% end %>
     
     </ul>
     <form class="form-inline my-2 my-lg-0">
