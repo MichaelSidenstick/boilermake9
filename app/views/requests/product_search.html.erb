@@ -7,13 +7,19 @@
   <% end %>
 
 <% if @items %>
+  <table class = "table table-striped">
+    <thead class = "thead-dark">
+    <th>Item</th>
+    <th>Picture</th>
+    <th>Add Product</th>
+    </thead>
     <% @items.each do |item|%>
-        <%= item["upc"] + ", " + item["description"].to_s + ", " + item["items"][0]["price"]["regular"].to_s %>
-        <img src="https://www.kroger.com/product/images/medium/front/<%=item["upc"]%>" >
-        <%= link_to 'Add this Product', 'http://localhost:3000/requests/' + params[:id] + '/add_product?prod_id=' + prod_id=item["upc"] %>
-        <br>
-        <% end %>
+      <tbody>
+      <td><%= item["upc"] + ", " + item["description"].to_s + ", " + item["items"][0]["price"]["regular"].to_s %></td>
+      <td><img src="https://www.kroger.com/product/images/medium/front/<%=item["upc"]%>" ></td>
+      <td><%= link_to 'Add this Product', 'http://localhost:3000/requests/' + params[:id] + '/add_product?prod_id=' + prod_id=item["upc"]%>
+      </tbody>
+    <% end %>
 <% else %>
-        <p>Fuck </p>
+  <p>Yikes</p>
 <% end %>
-  
