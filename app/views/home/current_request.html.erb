@@ -1,4 +1,6 @@
-<h1>Hello</h1>
+<div class = "background">
+<h1 class = "title">Current Requests</h1>
+<%#Sorts the requests by price%>
 <%temp = Array.new%>
 <%Request.all.each do |request| %>
   <%if request.cost.present? %>
@@ -7,22 +9,19 @@
 <%end%>
 <% temp = temp.sort { |a,b| a[0] <=> b[0]}%>
 
-<%#The above sorted it, so its sorted by now %>
-<%temp.each do |person|%>
-  <p><%=person[1]%> has a cart that costs $<%=person[0]%></p>
-<% end %>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Cost</th>
-    <th>Link to Page</th>
+<%#Prints the table of the names, cost, and link to people's pages %>
+<table class = "request-cont">
+  <tr class = "header">
+    <th class = "request-column">Name</th>
+    <th class = "request-column">Cost</th>
+    <th class = "request-column">Link to Page</th>
   </tr>
   <%temp.each do |person| %>
-    <tr>
-      <td><%=person[1]%></td>
-      <td><%=person[0]%></td>
-      <td><%=link_to "Cart", request_path(person[2]) %></td>
-    </tr>
+    <tr class = text>
+      <td class = "request-column" ><%=person[1]%></td>
+      <td class = "request-column">$<%=person[0]%></td>
+      <td class = "request-column"><%=link_to "Cart", request_path(person[2]) %></td>
+    </trtext>
   <% end %>
 </table>
+</div>
