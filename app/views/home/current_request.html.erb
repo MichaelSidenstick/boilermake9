@@ -1,0 +1,28 @@
+<h1>Hello</h1>
+<%temp = Array.new%>
+<%Request.all.each do |request| %>
+  <%if request.cost.present? %>
+    <%temp.unshift [request.cost, request.name, request.id]%>
+  <%end%>
+<%end%>
+<% temp = temp.sort { |a,b| a[0] <=> b[0]}%>
+
+<%#The above sorted it, so its sorted by now %>
+<%temp.each do |person|%>
+  <p><%=person[1]%> has a cart that costs $<%=person[0]%></p>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Cost</th>
+    <th>Link to Page</th>
+  </tr>
+  <%temp.each do |person| %>
+    <tr>
+      <td><%=person[1]%></td>
+      <td><%=person[0]%></td>
+      <td><%=link_to "Cart", request_path(person[2]) %></td>
+    </tr>
+  <% end %>
+</table>
