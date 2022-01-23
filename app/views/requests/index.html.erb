@@ -11,11 +11,13 @@
 
   <tbody>
     <% @requests.each do |request| %>
+      <% if request.user == current_user%>
       <tr>
         <td><%= request.name %></td>
         <td><%= link_to 'Edit', edit_request_path(request) %></td>
         <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
