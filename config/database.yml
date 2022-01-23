@@ -50,6 +50,7 @@ default: &default
   host: ec2-18-234-17-166.compute-1.amazonaws.com
   user: mmqavsczhrdepj
   password: ff4a514244d33bff3f824dd67896da77703414b846231e575c14294cdcae8879
+  
 development:
   <<: *default
   database: d1rch9riojfehs
