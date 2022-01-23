@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2022_01_23_054222) do
     t.integer "requester_id"
     t.integer "donor_id"
     t.datetime "exp_date"
+
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
