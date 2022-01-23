@@ -70,7 +70,36 @@ class RequestsController < ApplicationController
       format.html { render :new, status: :unprocessable_entity }
       format.json { render json: @request.errors, status: :unprocessable_entity }
     end
-  end  
+  end
+  
+  def add_to_cart
+    # Create HTTP Reqeuest
+    url = URI("https://api.kroger.com/v1/cart/add")
+  
+    https = Net::HTTP.new(url.host, url.port);
+    https.use_ssl = true
+  
+    # Set headers for HTTP Request
+    req = Net::HTTP::Put.new(url)
+    req["Accept"] = "application/json"
+    req["Authorization"] = "Bearer " + current_user.cartToken
+  
+    # Create body for HTTP Reqeuest
+    jsonString = "{\"items\": ["
+    Request.find(params[:id]).product_list.each {|item| 
+        jsonString += "{\"upc\": \"" + item .to_s+ "\",\"quantity\":1},"
+    } 
+    jsonString = jsonString[0...-1]
+    jsonString += "]}"
+  
+    req.body = jsonString
+  
+    # Submit Reqeuest
+    response = https.request(req)
+
+    puts current_user.cartToken
+    puts response.body
+  end
 
   def correct_user
     @request = current_user.requests.find_by(id: params[:id])
