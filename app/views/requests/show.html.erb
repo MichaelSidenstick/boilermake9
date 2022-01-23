@@ -3,7 +3,7 @@
   <p><%=@request.name%></p>
   <p> 
     <% @request.product_list.each do |product_id|%>
-      <%= product_id %>
+      <img src="https://www.kroger.com/product/images/medium/front/<%= product_id %>" >
     <% end %>
   </p>
 </div>

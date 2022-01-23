@@ -68,7 +68,7 @@ class RequestsController < ApplicationController
     @request.product_list.push(params[:prod_id])
     
     if @request.save
-      redirect_to requests_path + '/' + params[:id].to_s
+      redirect_to 'http://localhost:3000/requests/new/' + params[:id].to_s + '/add_products?term=water'
     else
       format.html { render :new, status: :unprocessable_entity }
       format.json { render json: @request.errors, status: :unprocessable_entity }
