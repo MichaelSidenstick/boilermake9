@@ -27,9 +27,11 @@ class RequestsController < ApplicationController
     #@request = Request.new(request_params)
     @request = current_user.requests.build(request_params)
 
+    
+
     respond_to do |format|
       if @request.save
-        format.html { redirect_to requests_path, notice: "Request was successfully created." }
+        format.html { redirect_to 'http://localhost:3000/requests/new/' + @request.id.to_s + '/add_products', notice: "Request was successfully created." }
         format.json { render :show, status: :created, location: @request }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -70,7 +72,46 @@ class RequestsController < ApplicationController
       format.html { render :new, status: :unprocessable_entity }
       format.json { render json: @request.errors, status: :unprocessable_entity }
     end
-  end  
+  end 
+  
+  def product_search
+    @term = ''
+    @items2 = []  
+    if params[:term]
+      @term = params[:term]
+    else
+      @term = 'bread'
+    end
+    @token = current_user.productToken
+
+    url = URI("https://api.kroger.com/v1/products?filter.term=" + @term.to_s + "&filter.locationId=01400413")
+
+
+    https = Net::HTTP.new(url.host, url.port);
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(url)
+    request["Accept"] = "application/json"
+    request["Authorization"] = "Bearer " + @token
+
+    response = https.request(request)
+    puts "made the request"
+    @items = JSON.parse(response.read_body)["data"]
+    puts JSON.parse(response.read_body)["status"]
+    @items.each { |item|
+        string = item["upc"] + ", " + item["description"].to_s + ", " + item["items"][0]["price"]["regular"].to_s + " https://www.kroger.com/product/images/medium/front/" + item["upc"] 
+        @items2.push(string)
+        puts string
+    }
+    @items2
+    if @term != 'bread'
+    end
+  end
+
+  def product_search_redirect
+    puts params[:term].to_s
+    redirect_to 'http://localhost:3000/requests/new/' + params[:id].to_s + '/add_products?term=' + params[:term].to_s
+  end
 
   def correct_user
     @request = current_user.requests.find_by(id: params[:id])

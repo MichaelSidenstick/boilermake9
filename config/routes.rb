@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :requests
   root to: "home#index"
   get "/requests/:id/add_product", to: "requests#add_product"
+  get "/requests/new/:id/add_products", to: "requests#product_search"
+  post "/requests/new/:id/add_products", to: "requests#product_search_redirect"
 
   get "authenticate", to: "authenticate#main"
   get "authenticate/reset"

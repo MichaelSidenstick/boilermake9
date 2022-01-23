@@ -1,0 +1,19 @@
+<p> This is a test </p>
+<%= current_user.productToken %>
+<%= form_with do |form| %>
+    <div class="actions">
+    <%= form.text_field :term%>
+      <%= form.submit 'Search'%>
+    </div>
+  <% end %>
+
+<% if @items %>
+    <% @items.each do |item|%>
+        <%= item["upc"] + ", " + item["description"].to_s + ", " + item["items"][0]["price"]["regular"].to_s %>
+        <img src="https://www.kroger.com/product/images/medium/front/<%=item["upc"]%>" >
+        <br>
+        <% end %>
+<% else %>
+        <p>Fuck </p>
+<% end %>
+  
