@@ -1,4 +1,3 @@
-<p> This is a test </p>
 <%= current_user.productToken %>
 <%= form_with do |form| %>
     <div class="actions">
@@ -11,7 +10,7 @@
     <% @items.each do |item|%>
         <%= item["upc"] + ", " + item["description"].to_s + ", " + item["items"][0]["price"]["regular"].to_s %>
         <img src="https://www.kroger.com/product/images/medium/front/<%=item["upc"]%>" >
-        <%= link_to 'Add this Product', 'http://localhost:3000/requests/' + params[:id] + '/add_product?prod_id=' + prod_id=item["upc"]%>
+        <%= link_to 'Add this Product', 'http://localhost:3000/requests/' + params[:id] + '/add_product?prod_id=' + prod_id=item["upc"] %>
         <br>
         <% end %>
 <% else %>

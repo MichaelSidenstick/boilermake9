@@ -1,6 +1,5 @@
-<% @TMP_PROD_ID = 5%>
 <div>
-  <p><%=@request.name%></p>
+  <p><b><%=@request.name%></b></p><br>
   <p> 
     <% @request.product_list.each do |product_id|%>
       <img src="https://www.kroger.com/product/images/medium/front/<%= product_id %>" >

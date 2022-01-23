@@ -66,7 +66,6 @@ class RequestsController < ApplicationController
 
   def add_product
     @request.product_list.push(params[:prod_id])
-    
     if @request.save
       redirect_to 'http://localhost:3000/requests/new/' + params[:id].to_s + '/add_products?term=water'
     else
