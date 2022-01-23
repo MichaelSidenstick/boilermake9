@@ -21,6 +21,11 @@
     <%= form.text_field :product_list %>
   </div>
 
+  <div class="field">
+    <%= form.label 'Pick up date' %>
+    <%= form.datetime_select :exp_date %>
+  </div>
+
   <div class="actions">
     <%= form.number_field :user_id,
       id: :request_user_id,

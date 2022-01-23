@@ -78,4 +78,5 @@ class RequestsController < ApplicationController
     def request_params
       params.require(:request).permit(:name, :product_list, :cost, :status, :requester_id, :donor_id, :exp_date)
     end
+
 end
