@@ -32,6 +32,11 @@
     <%= f.password_field :current_password, class:"form-control", placeholder:"Current Password", autocomplete: "current-password" %>
   </div>
 
+  <div class="field form-group">
+    <%= f.label :userType %>(enter Recipient or Donor)<br />
+    <%= f.text_field :userType, autofocus: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update", class: 'btn btn-secondary' %>
   </div>
