@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :requests
   root to: "home#index"
   get '/current_request', to: 'home#current_request'
+  get '/fulfilled_request', to: 'home#fulfilled_request'
 
   get "/requests/:id/add_product", to: "requests#add_product"
   get "/requests/:id/add_to_cart", to: "requests#add_to_cart"
