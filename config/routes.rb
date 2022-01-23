@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post "/requests/new/:id/add_products", to: "requests#product_search_redirect"
   get "/requests/:id/add_to_cart", to: "requests#add_to_cart"
 
+  post "/requests/:id/add_to_cart", to: "requests#handle_conf"
+
   get "authenticate", to: "authenticate#main"
   get "authenticate/reset"
   get "authenticate/product"

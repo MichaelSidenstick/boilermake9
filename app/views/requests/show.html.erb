@@ -1,5 +1,5 @@
 <div>
-  <p><b><%=@request.name%></b></p><br>
+  <p><b><%=@request.name%> ($<%=@request.cost%> Total)</b></p><br>
   <p> 
     <% @request.product_list.each do |product_id|%>
       <img src="https://www.kroger.com/product/images/medium/front/<%= product_id %>" >
@@ -7,6 +7,6 @@
   </p>
 </div>
 <%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %> 
-<%= link_to 'Add Product', 'http://localhost:3000/requests/' + @request.id.to_s + '/add_product?prod_id=0000000004011'%>
-<%= link_to 'Add to Cart', 'http://localhost:3000/requests/' + @request.id.to_s + '/add_to_cart'%>
+<%= link_to 'Back', requests_path %> |
+<%= link_to 'Add Product', 'http://localhost:3000/requests/' + @request.id.to_s + '/add_product?prod_id=0000000004011'%> |
+<%= link_to 'Add to Cart', 'http://localhost:3000/requests/' + @request.id.to_s + '/add_to_cart?req_id=' + @request.id.to_s %> |

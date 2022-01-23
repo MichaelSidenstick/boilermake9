@@ -17,6 +17,13 @@ class AuthenticateController < ApplicationController
     def reset
         current_user.update_attribute(:productToken, "")
         current_user.update_attribute(:cartToken, "")
+        if params[:next] == 'cart'
+            redirect_to 'http://localhost:3000/authenticate/cart'
+        else
+            if params[:next] == 'product'
+                redirect_to 'http://localhost:3000/authenticate/cart'
+            end
+        end 
     end
 
     def product

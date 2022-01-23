@@ -1,1 +1,11 @@
-<p> This is a test</p>
+<%= form_with do |form| %>
+    <div class="actions">
+    <%= form.text_field :conf_number%>
+      <%= form.submit 'Submit Confirmation Number'%>
+    </div>
+    <div class="actions">
+    <%= form.number_field :req_id,
+      class:"form-control", value: 
+        @req_id, type: :hidden   %>
+  </div>
+  <% end %>

@@ -3,7 +3,7 @@
 <%#Sorts the requests by price%>
 <%temp = Array.new%>
 <%Request.all.each do |request| %>
-  <%if request.cost.present? %>
+  <%if request.status == 'fulfilled' %>
     <%temp.unshift [request.cost, request.name, request.id]%>
   <%end%>
 <%end%>

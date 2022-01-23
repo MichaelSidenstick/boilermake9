@@ -66,6 +66,14 @@ class RequestsController < ApplicationController
 
   def add_product
     @request.product_list.push(params[:prod_id])
+    puts "added stuff"
+    @cost = @request.cost
+    if @cost
+      @cost = @cost + params[:cost]
+    else
+      @cost = params[:cost]
+    end
+    @request.cost = @cost
     if @request.save
       redirect_to 'http://localhost:3000/requests/new/' + params[:id].to_s + '/add_products?term=water'
     else
@@ -114,6 +122,10 @@ class RequestsController < ApplicationController
   end
   
   def add_to_cart
+    @req_id = params[:req_id]
+    if current_user.cartToken == nil
+      redirect_to 'http://localhost:3000/authenticate/reset?next=cart'
+    end  
     # Create HTTP Reqeuest
     url = URI("https://api.kroger.com/v1/cart/add")
   
@@ -140,6 +152,16 @@ class RequestsController < ApplicationController
 
     puts current_user.cartToken
     puts response.body
+    @req_id
+  end
+
+  def handle_conf
+    puts "changed status"
+    puts params.to_s
+    request2 = Request.find(params[:id])
+    request2.status = 'fulfilled'
+    request2.save
+    redirect_to 'http://localhost:3000/requests/' + params[:id]
   end
 
   def correct_user
