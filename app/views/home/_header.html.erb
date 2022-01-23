@@ -6,14 +6,18 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> ca091683104ffd258a5398507847895c6f81b42d
     <% if current_user %>
         <% if current_user.userType && current_user.userType.downcase == "donor" %>
             <li class="nav-item">
-                <a class="nav-link" href="#">Current Requests</a>
+                <%= link_to "Current Requests", current_request_path, class:"nav-link"%>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Fulfilled Requests</a>
+                <%= link_to "Fulfilled Requests", fulfilled_request_path, class:"nav-link"%>
             </li>
         <% else %>
             <li class="nav-item">
