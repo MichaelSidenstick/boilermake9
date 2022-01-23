@@ -62,12 +62,15 @@ class RequestsController < ApplicationController
   end
 
   def add_product
-    puts "anythignn\n\n\n\n\n\n"
-    @request.product_list.push(5)
-    @request.save
-  end
-
-  helper_method :add_product
+    @request.product_list.push(params[:prod_id])
+    
+    if @request.save
+      redirect_to requests_path + '/' + params[:id].to_s
+    else
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @request.errors, status: :unprocessable_entity }
+    end
+  end  
 
   def correct_user
     @request = current_user.requests.find_by(id: params[:id])
