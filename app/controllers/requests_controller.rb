@@ -27,6 +27,7 @@ class RequestsController < ApplicationController
   def create
     #@request = Request.new(request_params)
     @request = current_user.requests.build(request_params)
+    @request.status = 'open'
 
     
 
@@ -67,9 +68,9 @@ class RequestsController < ApplicationController
   def add_product
     @request.product_list.push(params[:prod_id])
     puts "added stuff"
-    @cost = @request.cost
+    @cost = @request.cost.to_f
     if @cost
-      @cost = @cost + params[:cost]
+      @cost = @cost + params[:cost].to_f
     else
       @cost = params[:cost]
     end

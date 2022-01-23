@@ -1,9 +1,10 @@
 
-<h1>Current Requests</h1>
+<h1>Current Requests</h1> <br>
+<a href="http://localhost:3000/authenticate/cart" > Authenticate </a>
 <%#Sorts the requests by price%>
 <%temp = Array.new%>
 <%Request.all.each do |request| %>
-  <%if request.cost.present? %>
+  <%if request.status == 'open' %>
     <%temp.unshift [request.cost, request.name, request.id]%>
   <%end%>
 <%end%>

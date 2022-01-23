@@ -18,9 +18,8 @@
 
     
   <div class="actions">
-    <%= form.label 'Items' %>
     <%= form.text_field :product_list,
-    value: request.product_list %>
+    value: request.product_list, type: :hidden %>
   </div>  
 
   <div class="field">
